@@ -70,7 +70,7 @@ from sentence_transformers import SentenceTransformer
 from langchain_core.embeddings import Embeddings
 
 class SBertEmbeddings(Embeddings):
-    def __init__(self, model_name='sentence-transformers\all-MiniLM-L6-v2',use_auth_token=hf_token):
+    def __init__(self, model_name='sentence-transformers/all-MiniLM-L6-v2',use_auth_token=hf_token):
         self.model = SentenceTransformer(model_name)
     def embed_documents(self, texts):
         return self.model.encode(texts, show_progress_bar=False).tolist()
@@ -154,4 +154,5 @@ if user_query:
           st.session_state.messages.append({'role':'assistant','content':out['output']})
 
           st.write(out['output'])
+
 
