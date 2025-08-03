@@ -7,4 +7,5 @@ chromadb>=0.4.24
 pypdf>=3.9.1
 python-dotenv>=1.0.1
 openai>=1.25.0
+faiss-cpu
 langchain_openai
