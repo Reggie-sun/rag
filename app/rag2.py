@@ -79,7 +79,7 @@ class SBertEmbeddings(Embeddings):
 @st.cache_resource(ttl=3600)
 def configure_retriever(uploaded_files):
     docs=[]
-    temp_dir=tempfile.TemporaryDirectory(dir=r"D:\\")
+    temp_dir=tempfile.TemporaryDirectory()
     for file in uploaded_files:
         temp_filepath=os.path.join(temp_dir.name,file.name)
         with open(temp_filepath,"wb") as f:
@@ -151,4 +151,5 @@ if user_query:
     with st.chat_message('assistant'):
           out=agent_executor.invoke({'input':user_query},config={'callbacks':[st_cb]})
           st.session_state.messages.append({'role':'assistant','content':out['output']})
+
           st.write(out['output'])
