@@ -13,6 +13,7 @@ from langchain.agents import create_react_agent,AgentExecutor
 from langchain_community.callbacks.streamlit import StreamlitCallbackHandler
 from langchain_openai import ChatOpenAI
 from sentence_transformers import SentenceTransformer
+from langchain_community.vectorstores import FAISS
 from dotenv import load_dotenv
 load_dotenv()
 hf_token = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
@@ -88,7 +89,7 @@ def configure_retriever(uploaded_files):
     
     split_docs=RecursiveCharacterTextSplitter(chunk_size=1000,chunk_overlap=200).split_documents(docs)
     embedding_model = SBertEmbeddings()
-    vector=Chroma.from_documents(split_docs,embedding_model)
+    vector=FAISS.from_documents(split_docs,embedding_model)
     retriever=vector.as_retriever()
     return retriever
 
@@ -152,6 +153,7 @@ if user_query:
           st.session_state.messages.append({'role':'assistant','content':out['output']})
 
           st.write(out['output'])
+
 
 
 
