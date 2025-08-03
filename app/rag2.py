@@ -2,8 +2,6 @@
 #1索引（加载文本，分割文本，贮存在向量数据库）
 #2检索和生成
 import os
-os.environ['http_proxy'] = 'http://127.0.0.1:7890'
-os.environ['https_proxy'] = 'http://127.0.0.1:7890'
 import streamlit as st
 import tempfile
 from langchain_community.chat_message_histories import StreamlitChatMessageHistory
@@ -154,5 +152,6 @@ if user_query:
           st.session_state.messages.append({'role':'assistant','content':out['output']})
 
           st.write(out['output'])
+
 
 
